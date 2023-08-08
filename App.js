@@ -1,75 +1,10 @@
 import * as React from 'react';
-import {useState} from 'react';
 
-import {Alert, Button, StyleSheet, Text, View} from 'react-native';
-import RNRecordModule from './src/modules/RNRecord';
+import {Alert, StyleSheet, View} from 'react-native';
 import {Camera} from 'react-native-camera-kit';
 
 export default function App() {
-  const [startRecord, setStartRecord] = useState(false);
   const delayTime = React.useRef(Date.now());
-
-  React.useEffect(() => {
-    (async () => {
-      const permission = await RNRecordModule.checkPermission();
-      if (!permission) {
-        RNRecordModule.requestPermission();
-      }
-    })();
-  }, []);
-
-  const toggle = async () => {
-    let status = '';
-    if (startRecord) {
-      status = await RNRecordModule.stopRecording();
-    } else {
-      status = await RNRecordModule.startRecording();
-    }
-    setStartRecord(!startRecord);
-  };
-
-  const getListRecording = async () => {
-    const list = await RNRecordModule.getListRecordings();
-    console.log('list', list);
-  };
-
-  // return (
-  //   <View>
-  //     <Text>jahaha</Text>
-  //     <Button
-  //       title={'click'}
-  //       onPress={() => {
-  //         console.log('click', RNRecordModule);
-  //       }}
-  //     />
-  //     <Button
-  //       title={'open tree'}
-  //       onPress={() => {
-  //         RNRecordModule.exportRecordings([]);
-  //       }}></Button>
-  //     <Button
-  //       title={'request permission'}
-  //       onPress={() => {
-  //         RNRecordModule.requestPermission();
-  //       }}></Button>
-  //     <Button title={'get list recording'} onPress={getListRecording}></Button>
-  //     <View>
-  //       <Text></Text>
-  //       <Button title={startRecord ? 'stop' : 'start'} onPress={toggle} />
-  //     </View>
-  //     <Button
-  //       title={'remove recording'}
-  //       onPress={() => {
-  //         RNRecordModule.removeAllRecordings();
-  //       }}></Button>
-  //     <Button
-  //       title={'pickAudioDocuments'}
-  //       onPress={async () => {
-  //         const value = await RNRecordModule.pickAudioDocuments();
-  //         console.log('value', value);
-  //       }}></Button>
-  //   </View>
-  // );
 
   const qrCodeScanResult = event => {
     if (Date.now() - delayTime.current < 3000) {
