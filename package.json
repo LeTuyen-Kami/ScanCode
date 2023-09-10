@@ -10,8 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-firebase/app": "^18.3.2",
+    "@react-native-firebase/database": "^18.3.2",
     "react": "18.0.0",
-    "react-native": "0.69.0",
+    "react-native": "0.69.3",
     "react-native-camera-kit": "^13.0.0",
     "react-native-reanimated": "2.14.4"
   },
