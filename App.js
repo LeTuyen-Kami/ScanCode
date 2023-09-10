@@ -103,6 +103,12 @@ export default function App() {
       });
   };
 
+  const testDateDisplay = data?.testDate
+    ? `${data?.testDate?.toLocaleTimeString(
+        'vi-VN',
+      )} - ${data?.testDate?.toLocaleDateString('vi-VN')}`
+    : 'Chưa test';
+
   React.useEffect(() => {
     if (currentCode) {
       setLoading(true);
@@ -217,9 +223,7 @@ export default function App() {
                       fontWeight: 'bold',
                       paddingVertical: 5,
                     }}>
-                    Ngày test:{' '}
-                    {new Date(Date.now()).toLocaleTimeString('vi-VN')} -{' '}
-                    {new Date(Date.now()).toLocaleDateString('vi-VN')}
+                    Ngày test: {testDateDisplay}
                   </Text>
                   <View
                     style={{
